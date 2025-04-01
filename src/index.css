@@ -1,0 +1,152 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+    
+    --axiom-glow: 0 0 10px 2px rgba(255, 248, 214, 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-space-dark text-foreground m-0 p-0 overflow-x-hidden;
+    background-image: 
+      radial-gradient(circle at 20% 35%, rgba(76, 0, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 75% 44%, rgba(0, 217, 255, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply backdrop-blur-sm bg-white/10 border border-white/20 shadow-xl;
+  }
+  
+  .planet-card {
+    @apply rounded-xl glassmorphism hover:bg-white/15 transition-all duration-300 overflow-hidden;
+  }
+  
+  .orbit-path {
+    @apply absolute border border-white/5 rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .system-container {
+    @apply absolute w-[2000px] h-[2000px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-100;
+  }
+
+  .space-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-purple-300;
+  }
+  
+  .planet {
+    @apply absolute rounded-full flex items-center justify-center text-white font-bold shadow-lg 
+           hover:scale-110 transition-transform duration-300 cursor-pointer z-10 relative;
+    animation: orbit var(--orbit-duration) linear infinite;
+    transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+  }
+  
+  .planet-static {
+    @apply absolute rounded-full flex items-center justify-center text-white font-bold shadow-lg 
+           hover:scale-125 hover:shadow-[0_0_35px_10px_rgba(255,255,255,0.4)] transition-all duration-300 cursor-pointer z-10;
+    transform: translate(-50%, -50%);
+  }
+  
+  .planet:hover .planet-tooltip,
+  .planet-static:hover .planet-tooltip {
+    @apply opacity-100 visible;
+  }
+  
+  .planet-tooltip {
+    @apply absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2 py-1 text-xs whitespace-nowrap
+           bg-black/80 text-white rounded opacity-0 invisible transition-opacity duration-200
+           pointer-events-none z-30;
+  }
+  
+  .intersection-point {
+    @apply absolute w-4 h-4 rounded-full bg-yellow-400 shadow-[0_0_15px_4px_rgba(255,248,0,0.6)]
+           hover:scale-150 hover:shadow-[0_0_20px_6px_rgba(255,248,0,0.8)] transition-all duration-300 cursor-pointer z-20 relative;
+    transform: translate(-50%, -50%);
+  }
+  
+  .intersection-point:hover .intersection-tooltip {
+    @apply opacity-100 visible;
+  }
+  
+  .intersection-tooltip {
+    @apply absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2 py-1 text-xs whitespace-nowrap
+           bg-black/80 text-white rounded opacity-0 invisible transition-opacity duration-200
+           pointer-events-none z-30 max-w-[200px] text-center;
+  }
+  
+  .axiom-sun {
+    @apply absolute w-28 h-28 rounded-full bg-gradient-to-br from-orange-500 to-orange-600
+           left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+           shadow-[0_0_40px_8px_rgba(255,100,0,0.4)] z-0;
+  }
+  
+  .star {
+    @apply absolute rounded-full bg-white;
+  }
+  
+  .page-transition-enter {
+    @apply opacity-0;
+  }
+  
+  .page-transition-enter-active {
+    @apply opacity-100 transition-opacity duration-300;
+  }
+  
+  .page-transition-exit {
+    @apply opacity-100;
+  }
+  
+  .page-transition-exit-active {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+  
+  .bg-space-deep {
+    @apply bg-[#0a1633];
+  }
+}
